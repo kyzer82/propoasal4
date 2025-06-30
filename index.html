@@ -3,38 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네오위즈 신작 프로세스 개선 제안 인포그래픽</title>
+    <title>네오위즈 신작 프로세스 개선 제안 인포그래픽 (라이트 테마)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f0f4f8; /* 밝은 배경색 */
-            color: #374151; /* 어두운 텍스트 색상 */
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        /* 파란색 ▼ 화살표 복구 */
         .flow-arrow::after {
             content: '▼';
             display: block;
             font-size: 2rem;
-            color: #005CB9; /* 밝은 배경에 어울리는 파란색 화살표 */
+            color: #3B82F6; /* Blue-500 */
             margin: 0.5rem 0;
             animation: bounce 1.5s infinite;
         }
@@ -43,689 +25,358 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-15px);
+                transform: translateY(-10px);
             }
             60% {
-                transform: translateY(-7px);
+                transform: translateY(-5px);
             }
         }
         .card-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* 그림자 효과 약화 */
-        }
-        /* 기존 네오위즈 섹션의 플로우차트 스타일 (새로운 테마에 맞게 색상 조정) */
-        .flowchart-step {
-            transition: all 0.3s ease;
-            position: relative;
-            background-color: white; /* 흰색 배경 */
-            border: 2px solid #D1D5DB; /* 연한 회색 테두리 */
-        }
-        .flowchart-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .flowchart-step h3, .flowchart-step p, .flowchart-step span { /* 내부 텍스트 색상 조정 */
-            color: #374151;
-        }
-        .flowchart-step .font-bold {
-            color: #1F2937; /* 더 진한 볼드 텍스트 */
-        }
-        .flowchart-step .text-red-400 {
-            color: #EF4444; /* 붉은색 유지 */
-        }
-        /* 타사 사례 섹션의 플로우차트 스타일 (새로운 테마에 맞게 색상 조정) */
-        .other-flowchart-card {
-            background-color: white; /* 흰색 카드 배경 */
-            border: 1px solid #E5E7EB; /* 연한 테두리 */
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .other-flowchart-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .other-flow-item {
-            background-color: #DBEAFE; /* 연한 파란색 배경 (Tailwind blue-100) */
-            color: #1E40AF; /* 진한 파란색 텍스트 (Tailwind blue-800) */
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-        .other-flow-arrow {
-            color: #3B82F6; /* 파란색 화살표 */
-            font-size: 2rem;
-            line-height: 1;
-        }
-        .other-company-title {
-            color: #1F2937; /* 진한 텍스트 */
-        }
-        .other-process-name {
-            color: #3B82F6; /* 파란색 */
-        }
-        .other-accent-color {
-            color: #EF4444; /* 최종 승인 강조색상 */
+        .mini-flow-arrow::after {
+            content: '▼';
+            display: block;
+            font-size: 1.2rem;
+            color: #9CA3AF; /* Gray-400 */
+            margin: 0.25rem 0;
         }
     </style>
 </head>
-<body class="bg-[#f0f4f8] text-gray-800">
+<body class="bg-[#F4F8FA] text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="text-center py-12">
-            <h1 class="text-4xl md:text-6xl font-black text-gray-800 text-shadow" style="color: #00449E;">네오위즈 신작 제안 프로세스 고찰</h1>
+            <h1 class="text-4xl md:text-5xl font-black text-[#194A8A]">네오위즈 신작 제안 프로세스 고찰</h1>
+            <p class="mt-4 text-xl md:text-2xl font-bold text-[#3B82F6]">PD's Voice</p>
             <p class="mt-2 max-w-3xl mx-auto text-gray-600">
-                현재 신작 제안 프로세스상의 개선점에 대한 단순한 PD들의 의견취합을 넘어, 신작 제안에 있어 병목 현상을 진단하고 개선을 모색하기 위해 작성 되었습니다.
+                네오위즈 제작 PD들의 면담을 통해 그들이 인식하고 있는 네오위즈 신작 승인 프로세스의 문제점과 개선 방향에 대한 의견을 드리고자 합니다.. 이 보고서는 단순한 의견 취합을 넘어, PD들이 인식하고 있는 프로세스상 병목 현상을 진단하고 해결책을 모색하기 위해 작성되었습니다.
             </p>
         </header>
 
         <main>
-            <section id="neowiz-current-process" class="mb-16">
-                <h2 class="text-3xl font-bold text-center mb-2 text-[#00449E]">PD들이 인식하는 신작 승인 프로세스</h2>
-                
+            <section id="process-overview" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">PD들이 인식하는 (현)신작 승인 프로세스</h2>
                 <div class="flex flex-col items-center text-center">
-                    <div class="w-full max-w-md bg-white p-6 rounded-xl card-shadow border-2 border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800">1. PD, 아이디어 제안</h3>
-                        <p class="text-sm text-gray-600">창의적이고 시장성 있는 아이디어 구상</p>
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900">1. PD, 아이디어 제안</h3>
+                        <p class="text-sm text-gray-600 mt-2">창의적이고 시장성 있는 아이디어 구상</p>
                     </div>
                     <div class="flow-arrow"></div>
-                    <div class="w-full max-w-md bg-white p-6 rounded-xl card-shadow border-2 border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800">2. 소수 의사결정권자 검토</h3>
-                        <p class="text-sm text-gray-600">개인의 경험, 취향, 선입견에 기반한 1차 필터링</p>
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900">2. 소수 의사결정권자 검토</h3>
+                        <p class="text-sm text-gray-600 mt-2">개인의 경험, 취향, 선입견에 기반한 1차 필터링</p>
                     </div>
                     <div class="flow-arrow"></div>
-                    <div class="w-full max-w-md bg-red-100 p-6 rounded-xl card-shadow border-2 border-red-400 relative">
-                        <div class="absolute -top-4 -left-4 bg-[#EE9B00] text-gray-900 text-xs font-bold px-3 py-1 rounded-full animate-pulse">병목 지점</div>
-                        <h3 class="text-xl font-bold text-red-700">3. 비일관적 피드백 & 무한 수정</h3>
-                        <p class="text-sm text-red-600">"이건 뭐지?" / "시나리오가 약하네" / "문서 줄 좀 맞춰봐"</p>
-                        <p class="mt-2 text-xs text-red-500">핵심 비전보다 지엽적 문제에 집중 → 창작 의욕 저하</p>
+                    <div class="w-full max-w-lg bg-red-100 p-6 rounded-xl card-shadow border-2 border-red-500 relative">
+                        <div class="absolute -top-4 -left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">병목 지점</div>
+                        <h3 class="text-xl font-bold text-red-800">3. 비일관적 피드백 & 반복적 수정</h3>
+                        <p class="text-sm text-red-700 mt-2 italic">"이건 뭐지?" / "시나리오가 약하네" / "문서 줄 좀 맞춰봐"</p>
+                        <p class="mt-4 text-red-900 font-semibold">핵심 비전보다 지엽적 문제에 집중 → 창작 의욕 저하</p>
                     </div>
                     <div class="flow-arrow"></div>
-                    <div class="w-full max-w-md bg-white p-6 rounded-xl card-shadow border-2 border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800">4. 프로젝트 표류 또는 드랍</h3>
-                        <p class="text-sm text-gray-600">"안전하고 밋밋한 문서"만 남거나, PD 스스로 포기</p>
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900">4. 프로젝트 표류 또는 드랍</h3>
+                        <p class="text-sm text-gray-600 mt-2">"안전하고 밋밋한 문서"만 남거나, PD 스스로 포기</p>
                     </div>
                 </div>
             </section>
 
-            <section id="problem-diagnosis" class="mb-20">
-                <h2 class="text-3xl font-bold text-center mb-10 text-[#00449E]">1. 핵심 문제 진단: 병목 현상의 원인</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    <div class="md:col-span-1 bg-white rounded-xl card-shadow p-8 text-center">
-                        <p class="text-2xl font-semibold mb-2 text-[#005CB9]">PD 그룹 설문 결과</p>
-                        <p class="text-7xl font-extrabold text-[#00449E]">82%</p>
-                        <p class="text-gray-600 mt-2">현재의 승인 프로세스가<br>창의적 아이디어 발현에<br>"부정적"이라고 응답</p>
+             <section id="problem-points" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">PD들이 문제로 인식하고 있는 사항들</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">👑</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">개인 취향 기반의 의사결정</h3>
+                        <p class="text-sm text-gray-600">소수의 의사결정권자의 취향과 개인적 선호가 제안 통과 여부를 크게 좌우합니다.</p>
                     </div>
-                    <div class="md:col-span-2 text-gray-700 text-lg leading-relaxed">
-                        <p class="mb-4">네오위즈의 신작 개발 프로세스는 PD(프로듀서)들의 창의성과 실행력을 높이는 개선사항이 필요해 보입니다. 주요 의사결정권자의 주관적 판단에 대한 높은 의존도, 효율적이지 못하다고 느끼는 피드백 방식, 그리고 회사와 디렉터 간의 신뢰 부족은 단순한 절차의 문제를 넘어, 혁신적인 신작 탄생의 걸림돌이 될 가능성이 있습니다. 향후 신작 제안에 있어 개선 방향을 제시하여 네오위즈 신작에 있어 한 단계 더 도약할 수 있는 발판을 마련하고자 의견을 드리는 바입니다.</p>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🧩</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">장르 이해도 부족</h3>
+                        <p class="text-sm text-gray-600">의사결정권자가 특정 장르에 대한 이해나 경험이 부족하여 새로운 시도가 벽에 부딪힙니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">⏳</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">시간과 리소스 부족</h3>
+                        <p class="text-sm text-gray-600">아이디어를 구체화하고 준비하는 데 필요한 시간과 인적, 물적 자원이 매우 부족합니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">일관성 없는 피드백</h3>
+                        <p class="text-sm text-gray-600">회의나 보고 시점마다 피드백의 기준과 방향이 바뀌어 혼란을 야기하고 피로감을 높입니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🔬</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">본질을 흐리는 세부 논의</h3>
+                        <p class="text-sm text-gray-600">핵심 재미 요소보다 문서의 형식, 튜토리얼 등 지엽적인 디테일에 대한 논의로 본질이 흐려집니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">비공식 인맥 의존성</h3>
+                        <p class="text-sm text-gray-600">"누구는 되고, 누구는 안된다"는 식의 비공식적 관계나 인지도에 따라 검증 과정이 편향됩니다.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="bottleneck-analysis" class="mb-20">
-                <h2 class="text-3xl font-bold text-center mb-12 text-[#00449E]">2. 주요 병목 현상 상세 분석</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    
-                    <div class="bg-white rounded-xl card-shadow p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-4 text-center text-gray-800">문제 1: 편중된 의사결정 구조</h3>
-                        <p class="text-center text-gray-600 mb-4">신작 승인에 가장 큰 영향을 미치는 요소를 분석한 결과, 소수 의사결정권자의 개인적 선호가 높은 비중을 차지했습니다. 이는 장르 다양성 확보에 장애물이 될 가능성이 높습니다.</p>
-                        <div class="chart-container flex-grow">
-                            <canvas id="decisionChart"></canvas>
-                        </div>
+            <section id="pd-voices" class="mb-16">
+                 <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">현장의 목소리: PD's VOICE</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-extrabold text-blue-800 mb-2">A PD</h3>
+                        <p class="text-sm font-bold text-gray-500 mb-4">"좀 더 빠르게 프로토 빌드로서 게임의 본질을 증명하길 원함"</p>
+                        <p class="text-gray-700 flex-grow">그럴싸한 영상은 실제 게임 빌드보다 빠르게 만들 수 있지만, '핵심 재미'에 대한 검증을 회피하게 만듭니다. 이는 실제 게임성과 동떨어진 '보여주기식' 제안을 양산하는 원인이 됩니다.</p>
+                        <div class="mt-4 text-xs font-semibold text-blue-700">#신작병목 #내부편견 #보여주기식</div>
                     </div>
-
-                    <div class="bg-white rounded-xl card-shadow p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-4 text-center text-gray-800">문제 2: 비효율적 피드백 방식</h3>
-                        <p class="text-center text-gray-600 mb-4">PD들이 가장 개선이 시급하다고 느끼는 피드백 문제는 '기준 없는 피드백'과 '과도한 초기 검증'이었습니다. 이는 신작 준비에 대한 의욕을 저하시킬 수 있습니다.</p>
-                        <div class="chart-container flex-grow">
-                            <canvas id="feedbackChart"></canvas>
-                        </div>
+                     <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-extrabold text-blue-800 mb-2">B PD</h3>
+                        <p class="text-sm font-bold text-gray-500 mb-4">"장르 이해자가 참여하여 평가하길 원함"</p>
+                        <p class="text-gray-700 flex-grow">평가자의 장르 경험 부족이 문제. 장르이해자를 포함한 균형있는 평가 필요. 프로토타입까지 자율성 보장 필요.</p>
+                        <div class="mt-4 text-xs font-semibold text-blue-700">#평가체계 #전문가심사 #자율성</div>
                     </div>
-
-                    <div class="bg-white rounded-xl card-shadow p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-4 text-center text-gray-800">문제 3: 시나리오에 대한 기대와 현실의 괴리</h3>
-                        <p class="text-center text-gray-600 mb-4">회사는 '내러티브 강화'를 요구하지만, 실제 시나리오 작가 충원 및 시간 투자는 매우 부족합니다. 이 불균형은 내러티브 중심 게임 개발에 걸림돌이 될 수 있습니다.</p>
-                        <div class="flex-grow flex items-center justify-around p-4">
-                            <div class="text-center">
-                                <p class="text-6xl mb-2">🗣️</p>
-                                <p class="font-bold text-lg text-[#00449E]">높은 기대치</p>
-                                <p class="text-sm text-gray-600">"대단한 이야기 요구"</p>
-                            </div>
-                            <div class="text-5xl font-thin text-gray-400 mx-4">vs</div>
-                            <div class="text-center">
-                                <p class="text-6xl mb-2">📉</p>
-                                <p class="font-bold text-lg text-red-600">부족한 지원</p>
-                                <p class="text-sm text-gray-600">"인력/자원 부족"</p>
-                            </div>
-                        </div>
+                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-extrabold text-blue-800 mb-2">C PD</h3>
+                        <p class="text-sm font-bold text-gray-500 mb-4">"'가능성'을 증명할 기회의 부족"</p>
+                        <p class="text-gray-700 flex-grow">컨셉의 '잠재력'을 검증할 단계에서 완성된 제품의 '퀄리티'를 요구받아 드랍합니다. 이런 과정이 반복되면 공식 드랍 전 PD가 먼저 지쳐버리는 '심리적 드랍' 상태에 이르게 됩니다.</p>
+                        <div class="mt-4 text-xs font-semibold text-blue-700">#심리적드랍 #기회박탈 #평가기준모순</div>
                     </div>
-
-                    <div class="bg-white rounded-xl card-shadow p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-4 text-center text-gray-800">문제 4: 자율성과 기회</h3>
-                        <p class="text-center text-gray-600 mb-4">이상적인 상태와 현재 상태 간의 신뢰도 격차를 분석한 결과, 'PD 자율성'과 '공정한 기회' 측면에서 괴리가 있는 것으로 확인됩니다.</p>
-                        <div class="chart-container flex-grow">
-                            <canvas id="trustChart"></canvas>
-                        </div>
+                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-extrabold text-blue-800 mb-2">D PD</h3>
+                        <p class="text-sm font-bold text-gray-500 mb-4">"문서의 퀄리티보다는 게임의 본질을 평가받길 원함"</p>
+                        <p class="text-gray-700 flex-grow">게임성 논의 대신 문서 형식 지적이 주를 이룸. 일관성 없는 피드백 속에서 창작 의욕이 소모되고 1년간 제자리 걸음.</p>
+                        <div class="mt-4 text-xs font-semibold text-blue-700">#창작의욕저하 #일관성부족 #신뢰상실</div>
                     </div>
                 </div>
             </section>
             
-            <section id="pd-voices" class="mb-16">
-                   <h2 class="text-3xl font-bold text-center mb-12 text-[#00449E]">3. 현장의 목소리 : PD's Voice</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300 border-2 border-blue-200">
-                        <h3 class="text-2xl font-extrabold text-[#005CB9] mb-2">A PD</h3>
-                        <p class="text-sm font-bold text-gray-700 mb-4">"누구는 통과, 누구는 무한 검증"</p>
-                        <p class="text-gray-600 flex-grow">의사결정 병목 현상이 가장 큰 비용. 소수 권한자의 취향과 '영상' 중심 제안 문화가 게임의 본질을 흐리고 신뢰 문제를 야기함.(프로토는 빌드로 보여줘야 한다는 의견)</p>
-                        <div class="mt-4 text-xs font-semibold text-blue-600">#신작병목 #내부편견 #FGT필요</div>
+            <section id="improvement-points" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">PD들이 개선이 필요하다고 인식하는 사항</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">👥</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">균형있는 위원회(Commitee) 구성</h3>
+                        <p class="text-sm text-gray-600">장르별 전문가나 매니아가 참여하여 객관적이고 균형잡힌 평가가 필요합니다. (심사위원 후보 POOL 마련)</p>
                     </div>
-                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300 border-2 border-blue-200">
-                        <h3 class="text-2xl font-extrabold text-[#005CB9] mb-2">B PD</h3>
-                        <p class="text-sm font-bold text-gray-700 mb-4">"프로토타입까지 자율성 보장 필요"</p>
-                        <p class="text-gray-600 flex-grow">평가자의 장르 경험 부족이 문제. 심의 위원회 구성 시 위원 개개인의 독립적이고 소신있는 평가 환경 구성 필요</p>
-                        <div class="mt-4 text-xs font-semibold text-blue-600">#평가체계 #전문가심사 #자율성</div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🚀</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">프로토타입 단계의 자율성</h3>
+                        <p class="text-sm text-gray-600">핵심 재미를 빠르게 검증할 수 있도록, Proto Type 단계까지는 PD의 자율성을 지금보다 더 높여야 합니다.</p>
                     </div>
-                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300 border-2 border-blue-200">
-                        <h3 class="text-2xl font-extrabold text-[#005CB9] mb-2">C PD</h3>
-                        <p class="text-sm font-bold text-gray-700 mb-4">"가능성이 아닌 퀄리티로 탈락"</p>
-                        <p class="text-gray-600 flex-grow">단일 승인 라인에서 개인 의견에 따라 프로젝트 운명이 좌우됨. 빠른 검증과 피벗이 어려운 구조는 심리적 탈락으로 이어짐.</p>
-                        <div class="mt-4 text-xs font-semibold text-blue-600">#단일승인라인 #심리적탈락 #기회박탈</div>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 flex flex-col card-shadow hover:scale-105 transition-transform duration-300 border-2 border-blue-200">
-                        <h3 class="text-2xl font-extrabold text-[#005CB9] mb-2">D PD</h3>
-                        <p class="text-sm font-bold text-gray-700 mb-4">"흠잡히지 않는 문서가 목표"</p>
-                        <p class="text-gray-600 flex-grow">게임성 논의 대신 문서 형식 지적이 주를 이룸. 일관성 없는 피드백 속에서 창작 의욕이 소모되고 1년간 제자리 걸음.</p>
-                        <div class="mt-4 text-xs font-semibold text-blue-600">#창작의욕저하 #일관성부족 #신뢰상실</div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🧪</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">FGT(Focus Group Test) 의무화</h3>
+                        <p class="text-sm text-gray-600">VS빌드에서 프로덕션으로 전환하는 주요 의사결정 단계에서 FGT를 의무화하여 외부 검증을 거쳐야 합니다.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="solution-flowchart" class="mb-20">
-                <h2 class="text-3xl font-bold text-center mb-12 text-[#00449E]">4. 개선 방향 제언: 새로운 프로세스 제안</h2>
-                <div class="bg-white rounded-xl card-shadow p-8">
-                    <p class="text-center text-gray-600 mb-8 text-lg">기존의 수직적, 통제 중심의 프로세스에서 벗어나 수평적, 지원 중심의 새로운 프로세스관련 의견드립니다.<br/> 핵심은 '빠른 검증'과 '자율성 보장'입니다.</p>
-                    <div class="flex flex-col items-center justify-center space-y-4">
-
-                        <!-- Step 1: 신작 컨셉 제안 -->
-                        <div id="step1" class="flowchart-step text-center p-4 rounded-lg w-full md:w-3/4 lg:w-1/2">
-                            <p class="text-3xl mb-2">✨</p>
-                            <p class="font-bold text-gray-800">1. 신작 컨셉 제안</p>
-                        </div>
-                        <div class="flow-arrow"></div>
-
-                        <!-- Step 2: (가칭) Neo Committee 심사 -->
-                        <div id="step2" class="flowchart-step text-center p-4 rounded-lg w-full md:w-3/4 lg:w-1/2">
-                            <p class="text-3xl mb-2">👥</p>
-                            <p class="font-bold text-gray-800">2. (가칭) Neo Committee 심사</p>
-                            <p class="text-sm text-gray-700">승인자 : 성준님 + 2인 (장르 전문가 + 투자본부 1인 등)</p>
-                            <p class="text-sm text-gray-700">- 팀의 경험, 내러티브, 차별성, 시장성, 투자규모 등 검토</p>
-                            <p class="text-sm text-gray-700">- 프로토 개발 일정 협의</p>
-                            <p class="text-sm text-red-600 font-semibold mt-2">미승인 시: 신작 컨셉 제안으로 Back ↩️ 또는 보완</p>
-                            <p class="text-xs text-gray-700">(명확한 피드백 필요)</p>
-                        </div>
-                        <div class="flow-arrow"></div>
-
-                        <!-- Step 3: 프로토타입 개발 -->
-                        <div id="step3" class="flowchart-step text-center p-4 rounded-lg w-full md:w-3/4 lg:w-1/2">
-                            <p class="text-3xl mb-2">🕹️</p>
-                            <p class="font-bold text-gray-800">3. 프로토타입 개발</p>
-                            <p class="text-sm font-medium text-gray-700">(PD 자율성을 부여하여 3단계까지는 좀 더 빠른 Speed 필요)</p>
-                            <p class="text-sm font-medium text-gray-700">승인자 : 승철님</p>
-                            <p class="text-sm text-red-600 font-semibold mt-2">미승인 시: 신작 컨셉 제안으로 Back ↩️ 또는 보완</p>
-                            <p class="text-xs text-gray-700">(다른 신작 제안으로, 명확한 피드백 필요)</p>
-                        </div>
-                        <div class="flow-arrow"></div>
-                        
-                        <!-- Step 4: VS 빌드 & 최종 승인 (FGT 의무화, 성준님, 승철님 + 1인 승인) -->
-                        <div id="step4" class="flowchart-step text-center p-4 rounded-lg w-full md:w-3/4 lg:w-1/2">
-                            <p class="text-3xl mb-2">🎮</p>
-                            <p class="font-bold text-gray-800">4. VS 빌드 & 최종 승인</p>
-                            <p class="text-sm font-medium text-gray-700 mt-2">FGT 의무화 및 정식 승인</p>
-                            <p class="text-sm font-medium text-gray-700">승인자 : (성준님, 승철님 + 완수님 3인의 승인)</p>
-                            <p class="text-sm text-red-600 font-semibold mt-2">미승인 시: 신작 컨셉 제안으로 Back ↩️ 또는 보완</p>
-                        </div>
-                        <div class="flow-arrow"></div>
-
-                        <!-- Step 5: 프로덕션 착수 (성준님 + 2인 심사) -->
-                        <div id="step5" class="flowchart-step text-center p-4 rounded-lg w-full md:w-3/4 lg:w-1/2">
-                            <p class="text-3xl mb-2">✅</p>
-                            <p class="font-bold text-gray-800">5. 프로덕션 착수</p>
-                        </div>
-                        
+            <section id="new-process-proposal" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">신규 프로세스 방향관련 의견</h2>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900">1. 신작 컨셉 제안</h3>
                     </div>
-                </div>
-            </section>
-
-            <section id="solution-details" class="mb-20">
-                <h2 class="text-3xl font-bold text-center mb-12 text-[#00449E]">5. 세부 개선 전략</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    
-                    <div class="bg-white rounded-xl card-shadow p-6">
-                        <h3 class="text-xl font-bold mb-4 text-gray-800">전략 1: 평가 체계 혁신</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>전문가 Committee 구성: 장르별 내/외부 전문가 Pool을 구성하여 평가의 객관성 확보.</li>
-                            <li>비공개/비대면 평가 도입: 위원 개개인의 독립적이고 소신있는 평가 환경 보장.</li>
-                            <li>VS빌드의 FGT 결과 의무 반영: 실 유저 데이터 기반의 객관적 판단 기준 마련.</li>
-                            <li>문서보다는 빌드 또는 영상으로 게임의 코어를 빠르게 어필할 수 있도록 프로토단계는 6개월 이내를 목표로 PD 자율성을 높이는 전략 검토</li>
-                        </ul>
+                    <div class="flow-arrow"></div>
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">2. (가칭) Neo Committee 심사</h3>
+                        <div class="text-left text-sm text-gray-600 mt-4 space-y-2">
+                            <p><strong>승인자:</strong> 성준님 + 2인 (장르 전문가 + 투자본부 1인 등)</p>
+                            <p><strong>검토항목:</strong> 팀의 경험, 내러티브, 차별성, 시장성, 투자규모 등</p>
+                            <p><strong>결정사항:</strong> 프로토 개발 일정 협의</p>
+                            <p class="font-semibold text-blue-600">(※ 심사위원 후보 POOL 마련 필요)</p>
+                        </div>
                     </div>
-
-                    <div class="bg-white rounded-xl card-shadow p-6">
-                        <h3 class="text-xl font-bold mb-4 text-gray-800">전략 2: 자원의 재분배 및 집중</h3>
-                        <p class="text-gray-700 mb-4">성공 가능성을 높이기 위해 초기 단계에 자원을 집중 투자하는 전략 전환 고민 필요.</p>
-                        <div class="chart-container h-64">
-                            <canvas id="resourceChart"></canvas>
+                    <div class="flow-arrow"></div>
+                    <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">3. 프로토타입 개발</h3>
+                         <div class="text-left text-sm text-gray-600 mt-4 space-y-2">
+                            <p><strong>핵심:</strong> PD 자율성을 부여하여 빠른 Speed 필요</p>
+                            <p><strong>승인자:</strong> 승철님</p>
+                        </div>
+                    </div>
+                     <div class="flow-arrow"></div>
+                     <div class="w-full max-w-lg bg-white p-6 rounded-xl card-shadow border">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">4. VS 빌드 & 최종 승인</h3>
+                         <div class="text-left text-sm text-gray-600 mt-4 space-y-2">
+                            <p><strong>필수사항:</strong> FGT 의무화 및 정식 승인</p>
+                            <p><strong>승인자:</strong> 성준님, 승철님 + 완수님 (3인 승인)</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 타 글로벌 게임사 신작 승인 프로세스 섹션 시작 -->
-            <section id="other-companies-analysis" class="mt-20 mb-20">
-                <h2 class="text-3xl font-bold text-center mb-12 text-[#00449E]">6. 타 글로벌 게임사 신작 승인 프로세스</h2>
-                <p class="text-center text-gray-600 mb-8 text-lg">다양한 글로벌 게임사들은 각자의 철학을 담아 신작을 개발하고 승인하는 독특한 과정을 거칩니다. 이들의 프로세스를 통해 네오위즈 프로세스 개선에 대한 시사점을 얻을 수 있습니다.</p>
+            <section id="hrbp-opinion" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">HRBP 의견</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-6">
+                    (면담과 BP로서 느낀 점 위주)
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">🤔</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">점진적 개선 제안</h3>
+                        <p class="text-sm text-gray-600">당장의 변화보다는 PD들의 의견을 참고로 개선 포인트를 함께 고민해 보셨으면 합니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">📣</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">다양한 관점의 피드백</h3>
+                        <p class="text-sm text-gray-600">가능성을 바라보는 다양한 관점과 PD들의 수용도 측면에서 더 풍성한 피드백을 줄 수 있는 방안 모색이 필요합니다.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg card-shadow text-center">
+                        <div class="text-5xl mb-4">☕</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">소통 기회 확대</h3>
+                        <p class="text-sm text-gray-600">좀 더 자주 PD분들과 소통하며 상호 간극을 이해하고 합의하는 기회를 가지면 어떠할까 합니다.</p>
+                    </div>
+                </div>
+            </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Riot Games (라이엇 게임즈)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Greenlight Committee" (그린라이트 위원회)</h3>
-                        <p class="text-gray-600 mb-6 text-sm">라이브 서비스 게임에 강하며, 철저한 내부 검토를 통해 프로젝트의 잠재력을 극대화합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 아이디어 제안 및 초기 R&D 검토</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 프로토타입 개발</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 그린라이트 위원회 심사</strong><br><span class="text-xs text-gray-500">(위험 요소 점검 및 피드백)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>4. 최종 승인</strong></div>
+            <section id="global-cases" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#194A8A]">타 글로벌 게임사 신작 승인 프로세스</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-12">
+                    다양한 글로벌 게임사들은 각자의 철학을 담아 신작을 개발하고 승인하는 독특한 과정을 거칩니다. 이들의 프로세스를 통해 네오위즈 프로세스 개선에 대한 시사점을 얻을 수 있습니다.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Riot Games -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Riot Games (라이엇 게임즈)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Greenlight Committee"</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">라이브 서비스 게임에 강하며, 철저한 내부 검토를 통해 프로젝트의 잠재력을 극대화합니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 아이디어 제안 및 초기 R&D 검토</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프로토타입 개발</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 그린라이트 위원회 심사<br><span class="text-xs text-gray-500">(위험 요소 점검 및 피드백)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 최종 승인</div>
                         </div>
                     </div>
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Blizzard Entertainment (블리자드)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Incubation Model" (인큐베이션 모델)</h3>
-                        <p class="text-gray-600 mb-6 text-sm">높은 완성도를 지향하며, 초기 실험과 반복적인 검증을 통해 최고의 게임을 만듭니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 아이디어 수집 및 인큐베이션 팀 구성</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 프로토타입 개발 및 평가</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. VP급 다중 패널 심사</strong><br><span class="text-xs text-gray-500">("Go / Kill / Iterate" 결정)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>4. 정식 개발 착수</strong></div>
+                    <!-- Blizzard -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Blizzard Entertainment (블리자드)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Incubation Model"</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">높은 완성도를 지향하며, 초기 실험과 반복적인 검증을 통해 최고의 게임을 만듭니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 아이디어 수집 및 인큐베이션 팀 구성</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프로토타입 개발 및 평가</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. VP급 다중 패널 심사<br><span class="text-xs text-gray-500">("Go / Kill / Iterate" 결정)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 정식 개발 착수</div>
                         </div>
                     </div>
-
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">넥슨 / 카카오게임즈</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Gate Review 체계" (게이트 리뷰 체계)</h3>
-                        <p class="text-gray-600 mb-6 text-sm">단계별 검증을 통해 프로젝트의 위험을 관리하고 체계적인 진행을 추구합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 사전 TF 운영</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 전략기획 예비 심사</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 대표 최종 승인</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>4. Gate Review 체계화</strong><br><span class="text-xs text-gray-500">(기획→프로토→MVP→출시)</span></div>
+                    <!-- Nexon/Kakao -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">넥슨 / 카카오게임즈</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Gate Review 체계"</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">단계별 검증을 통해 프로젝트의 위험을 관리하고 체계적인 진행을 추구합니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 사전 TF 운영</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 전략기획 예비 심사</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 대표 최종 승인</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. Gate Review 체계화<br><span class="text-xs text-gray-500">(기획→프로토→MVP→출시)</span></div>
                         </div>
                     </div>
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Nintendo (닌텐도)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Lotcheck" (품질 검증)</h3>
-                        <p class="text-gray-600 mb-6 text-sm">플랫폼의 안정성과 고유한 경험을 최우선으로, 엄격한 최종 품질 검증을 거칩니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 개발자 등록 및 가이드라인 준수</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. "Lotcheck" (품질 검증) 제출</strong><br><span class="text-xs text-gray-500">(콘셉트 승인 대신 품질에 집중)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 연령 등급 획득 및 출시 준비</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>4. 출시</strong></div>
+                    <!-- Nintendo -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Nintendo (닌텐도)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Lotcheck" (품질 검증)</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">플랫폼의 안정성과 고유한 경험을 최우선으로, 엄격한 최종 품질 검증을 거칩니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 개발자 등록 및 가이드라인 준수</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. "Lotcheck" 제출<br><span class="text-xs text-gray-500">(콘셉트 승인 대신 품질에 집중)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 연령 등급 획득 및 출시 준비</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 출시</div>
                         </div>
                     </div>
-
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Sony (PlayStation Studios)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Concept to Polish" 파이프라인</h3>
-                        <p class="text-gray-600 mb-6 text-sm">고품질의 서사적 경험을 위해, 세분화된 단계별 개발과 마일스톤 관리를 중시합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 구상 (Conception)</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 프리 프로덕션 (Pre-Production)</strong><br><span class="text-xs text-gray-500">(수직 슬라이스 제작)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 프로덕션 (Production)</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>4. 폴리싱 (Polish)</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>5. 출시</strong></div>
+                    <!-- Sony -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Sony (PlayStation Studios)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Concept to Polish" 파이프라인</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">고품질의 서사적 경험을 위해, 세분화된 단계별 개발과 마일스톤 관리를 중시합니다.</p>
+                         <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 구상 (Conception)</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프리 프로덕션<br><span class="text-xs text-gray-500">(수직 슬라이스 제작)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 프로덕션</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 폴리싱 & 출시</div>
                         </div>
                     </div>
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Microsoft (Xbox Game Studios)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Concept to Certification" 프로세스</h3>
-                        <p class="text-gray-600 mb-6 text-sm">다양한 포트폴리오와 Xbox 생태계 통합을 위해, 플랫폼 인증으로 품질을 관리합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 아이디어 피치 및 초기 검토</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 프로토타입 / 수직 슬라이스 개발</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 정기적인 마일스톤 검토</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>4. Xbox 플랫폼 인증 (Certification)</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>5. 출시 및 Game Pass 통합</strong></div>
+                    <!-- Microsoft -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Microsoft (Xbox Game Studios)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Concept to Certification"</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">다양한 포트폴리오와 Xbox 생태계 통합을 위해, 플랫폼 인증으로 품질을 관리합니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 아이디어 피치 및 초기 검토</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프로토타입 / 수직 슬라이스</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. Xbox 플랫폼 인증</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 출시 및 Game Pass 통합</div>
                         </div>
                     </div>
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Electronic Arts (EA)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"EA Originals" 및 스튜디오별 자율성</h3>
-                        <p class="text-gray-600 mb-6 text-sm">대형 프랜차이즈와 혁신적 인디 게임을 아우르는 유연한 접근과 스튜디오의 자율성을 존중합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 아이디어 제안 및 스튜디오 내부 승인</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 프로토타입 / 수직 슬라이스 제작</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. EA 경영진 및 퍼블리싱 팀 검토</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>4. QA 및 인증</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>5. 출시</strong><br><span class="text-xs text-gray-500">("EA Originals" 프로그램 별도 운영)</span></div>
+                     <!-- EA -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Electronic Arts (EA)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"EA Originals" 및 스튜디오별 자율성</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">대형 프랜차이즈와 혁신적 인디 게임을 아우르는 유연한 접근과 스튜디오의 자율성을 존중합니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 스튜디오 내부 승인</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프로토타입 / 수직 슬라이스</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. EA 경영진 검토</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. QA, 인증 및 출시</div>
                         </div>
                     </div>
-                    
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">Ubisoft (유비소프트)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">"Creative Process" 및 단계별 검증</h3>
-                        <p class="text-gray-600 mb-6 text-sm">오픈월드 대작에 강하며, 전 세계 스튜디오 간 협업을 위한 명확한 개발 단계를 거칩니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. 초기 구상 (Conception)</strong><br><span class="text-xs text-gray-500">('Project Mandate' 작성)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 킥오프 미팅</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 프리 프로덕션</strong><br><span class="text-xs text-gray-500">('First Playable' 제작)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>4. 프로덕션 (알파 → 베타)</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>5. 출시 및 사후 지원</strong></div>
+                    <!-- Ubisoft -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">Ubisoft (유비소프트)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">"Creative Process" 및 단계별 검증</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">오픈월드 대작에 강하며, 전 세계 스튜디오 간 협업을 위한 명확한 개발 단계를 거칩니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. 초기 구상<br><span class="text-xs text-gray-500">('Project Mandate' 작성)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 프리 프로덕션<br><span class="text-xs text-gray-500">('First Playable' 제작)</span></div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 프로덕션 (알파 → 베타)</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 출시 및 사후 지원</div>
                         </div>
                     </div>
-
-                    <div class="other-flowchart-card">
-                        <h2 class="text-2xl font-bold other-company-title">KRAFTON (크래프톤)</h2>
-                        <h3 class="text-lg font-semibold other-process-name mb-3">신작 제안 프로세스</h3>
-                        <p class="text-gray-600 mb-6 text-sm">독립 스튜디오 체제를 기반으로, PD 중심의 아이디어와 투자 본부의 심층 검토를 통해 신작을 발굴합니다.</p>
-                        <div class="space-y-4">
-                            <div class="other-flow-item"><strong>1. PD의 프로젝트 제안 및 투자본부 안내</strong></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>2. 투자본부의 제안서 검토 및 피드백</strong><br><span class="text-xs text-gray-500">(팀의 의지, 의미있는 시도, 역량, 회사 기여도 등)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>3. 제안서 확정 및 승인 회의 준비</strong><br><span class="text-xs text-gray-500">(투자본부 주관)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>4. 제안서 사전 공유</strong><br><span class="text-xs text-gray-500">(의사결정권자 대상)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>5. 리뷰 회의 진행</strong><br><span class="text-xs text-gray-500">(제작 리더들의 이해도 확인)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item"><strong>6. 승인 회의</strong><br><span class="text-xs text-gray-500">(승인, 보류, 반려 결정)</span></div>
-                            <div class="text-center text-2xl font-bold other-flow-arrow">▼</div>
-                            <div class="other-flow-item other-accent-color"><strong>7. 킥오프 승인 (정식 개발 착수)</strong></div>
+                     <!-- Krafton -->
+                    <div class="bg-white p-6 rounded-lg card-shadow h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900">KRAFTON (크래프톤)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-2">독립 스튜디오 및 투자본부</p>
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">PD 중심의 아이디어와 투자 본부의 심층 검토를 통해 신작을 발굴합니다.</p>
+                        <div class="text-center text-sm">
+                            <div class="bg-blue-50 p-2 rounded">1. PD 프로젝트 제안</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">2. 투자본부 검토 및 피드백</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">3. 리뷰 및 승인 회의</div>
+                            <div class="mini-flow-arrow"></div>
+                            <div class="bg-blue-50 p-2 rounded">4. 킥오프 승인</div>
                         </div>
                     </div>
-
                 </div>
             </section>
         </main>
 
         <footer class="text-center py-12 mt-8">
-            <p class="text-gray-600">통합 인포그래픽 최종본</p>
-            <p class="text-sm text-gray-500 mt-2">© 2025 Deep Research</p>
+            <p class="text-gray-400">NEOWIZ New Project Process Analysis - 2025. 05 (Light Theme)</p>
         </footer>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const brilliantBlues = {
-                dark: '#00449E',
-                medium: '#005CB9',
-                light: '#3598DB',
-                sky: '#87CEEB',
-                text: '#333333'
-            };
-
-            const CHART_COLORS = {
-                red: '#EF4444',     /* Tailwind red-500 */
-                orange: '#F97316',  /* Tailwind orange-500 */
-                yellow: '#FACC15',  /* Tailwind yellow-400 */
-                blue: '#3B82F6',    /* Tailwind blue-500 */
-                lightBlue: '#60A5FA', /* Tailwind blue-400 */
-                darkOrange: '#EA580C' /* Tailwind orange-600 */
-            };
-
-            const globalChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#374151', /* text-gray-800 */
-                            font: {
-                                size: 12,
-                                family: "'Noto Sans KR', sans-serif"
-                            }
-                        }
-                    },
-                    tooltip: {
-                        enabled: true,
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleFont: {
-                            size: 14,
-                            family: "'Noto Sans KR', sans-serif"
-                        },
-                        bodyFont: {
-                            size: 12,
-                            family: "'Noto Sans KR', sans-serif"
-                        },
-                        callbacks: {
-                            title: function(tooltipItems) {
-                                const item = tooltipItems[0];
-                                let label = item.chart.data.labels[item.dataIndex];
-                                if (Array.isArray(label)) {
-                                    return label.join(' ');
-                                } else {
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            
-            function wrapLabel(label, maxWidth) {
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = words[0];
-
-                for (let i = 1; i < words.length; i++) {
-                    if (currentLine.length + words[i].length + 1 < maxWidth) {
-                        currentLine += ' ' + words[i];
-                    } else {
-                        lines.push(currentLine);
-                        currentLine = words[i];
-                    }
-                }
-                lines.push(currentLine);
-                return lines;
-            }
-
-
-            // Section 2 Charts (based on image_306ed8.png data)
-            const decisionCtx = document.getElementById('decisionChart')?.getContext('2d');
-            if (decisionCtx) {
-                new Chart(decisionCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['소수 의사결정권자 취향', '장르 전문성', '데이터 기반'],
-                        datasets: [{
-                            label: '영향 요인',
-                            data: [70, 15, 15],
-                            backgroundColor: [CHART_COLORS.red, CHART_COLORS.orange, CHART_COLORS.blue], /* Red, Orange, Blue from image */
-                            borderColor: 'white',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: { 
-                        ...globalChartOptions, 
-                        cutout: '60%', /* Doughnut style */
-                        scales: {} 
-                    }
-                });
-            }
-
-            const feedbackCtx = document.getElementById('feedbackChart')?.getContext('2d');
-            if (feedbackCtx) {
-                const rawFeedbackLabels = ['기준 없는 피드백', '과도한 초기 검증 요구', "'영상으로 대신하라' 문화", '비공식 인맥 의존성'];
-                const processedFeedbackLabels = rawFeedbackLabels.map(l => wrapLabel(l, 16));
-                
-                new Chart(feedbackCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: processedFeedbackLabels,
-                        datasets: [{
-                            label: '가장 시급한 개선점 (응답률 %)',
-                            data: [65, 55, 40, 30],
-                            backgroundColor: [CHART_COLORS.darkOrange, CHART_COLORS.orange, CHART_COLORS.lightBlue, CHART_COLORS.blue], /* Specific colors from image */
-                            borderRadius: 5,
-                            barPercentage: 0.6
-                        }]
-                    },
-                    options: { 
-                        ...globalChartOptions, 
-                        indexAxis: 'y',
-                        scales: {
-                            x: {
-                                ticks: { color: '#374151', font: { family: "'Noto Sans KR', sans-serif" } },
-                                grid: { color: '#E5E7EB' }
-                            },
-                            y: {
-                                ticks: { color: '#374151', font: { family: "'Noto Sans KR', sans-serif" } },
-                                grid: { display: false }
-                            }
-                        },
-                        plugins: {
-                            ...globalChartOptions.plugins,
-                            legend: {
-                                display: false
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Original Charts (color updated to new palette for consistency, but these sections are effectively removed or re-purposed)
-            const trustCtx = document.getElementById('trustChart')?.getContext('2d');
-            if (trustCtx) {
-                new Chart(trustCtx, {
-                    type: 'radar',
-                    data: {
-                        labels: ['PD 자율성', '회사의 신뢰', '공정한 기회', '자원 지원', '명확한 비전'],
-                        datasets: [{
-                            label: '현재 상태',
-                            data: [3, 4, 2.5, 5, 4.5],
-                            backgroundColor: 'rgba(239, 68, 68, 0.2)', /* red-500 with alpha */
-                            borderColor: CHART_COLORS.red,
-                            pointBackgroundColor: CHART_COLORS.red,
-                            borderWidth: 2
-                        }, {
-                            label: '이상적인 상태',
-                            data: [9, 8.5, 9, 8, 8],
-                            backgroundColor: 'rgba(59, 130, 246, 0.2)', /* blue-500 with alpha */
-                            borderColor: CHART_COLORS.blue,
-                            pointBackgroundColor: CHART_COLORS.blue,
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        ...globalChartOptions,
-                        scales: {
-                           r: {
-                                angleLines: { color: '#E5E7EB' }, /* 연한 회색 그리드 */
-                                grid: { color: '#E5E7EB' }, /* 연한 회색 그리드 */
-                                pointLabels: { font: { size: 14, family: "'Noto Sans KR', sans-serif" }, color: '#374151' }, /* text-gray-800 */
-                                ticks: { display: false, beginAtZero: true, max: 10 }
-                           }
-                        }
-                    }
-                });
-            }
-
-            const resourceCtx = document.getElementById('resourceChart')?.getContext('2d');
-            if(resourceCtx) {
-                new Chart(resourceCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['기존 방식', '개선 방식'],
-                        datasets: [
-                            {
-                                label: '기획/검증 단계',
-                                data: [15, 40],
-                                backgroundColor: CHART_COLORS.darkOrange,
-                            },
-                            {
-                                label: '초기 프로토타입/시나리오',
-                                data: [10, 35],
-                                backgroundColor: CHART_COLORS.orange,
-                            },
-                             {
-                                label: '본격 프로덕션',
-                                data: [75, 25],
-                                backgroundColor: CHART_COLORS.lightBlue,
-                            }
-                        ]
-                    },
-                    options: {
-                        ...globalChartOptions,
-                        scales: {
-                            x: { 
-                                stacked: true,
-                                ticks: { color: '#374151', font: { family: "'Noto Sans KR', sans-serif" } }, /* text-gray-800 */
-                                grid: { display: false }
-                            },
-                            y: { 
-                                stacked: true, 
-                                ticks: { 
-                                    callback: value => value + '%',
-                                    color: '#374151', /* text-gray-800 */
-                                    font: { family: "'Noto Sans KR', sans-serif" }
-                                },
-                                grid: { color: '#E5E7EB' } /* 연한 회색 그리드 */
-                            }
-                        },
-                         plugins: {
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        label += context.raw + '%';
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>
